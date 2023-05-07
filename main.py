@@ -25,23 +25,27 @@ def process_image(img, face_detection):
             img[y1:y1 + h, x1:x1 + w, :] = cv2.blur(img[y1:y1 + h, x1:x1 + w, :], (40, 40))  
     return img     
 
+args = argparse.ArgumentParser()
+
+args.add_argument("--mode", default='image')
+args.add_argument("--filePath", default="./data/girlFace.jpg")
+
+args = args.parse_args()
 
 output_dir = './output'
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)   #this step to save a new image
-    
-    
-#read image
-img = cv2.imread("./data/girlFace.jpg")
-
-H,W,_= img.shape
 
 
 #detect faces
 mp_face_detection = mp.solutions.face_detection
 #create new object // model_selection (0 or 1)//
 with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence=0.5) as face_detection:
-    img = process_image(img, face_detection)
+    if args.mode in ["image"]:
+        # read image
+        img = cv2.imread(args.filePath)
+        H,W,_ =img.shape
+        img = process_image(img, face_detection)
     
 #cv2.imshow('img', img)
 #cv2.waitKey(0)
