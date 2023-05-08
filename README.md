@@ -1,4 +1,4 @@
-# Face-anonymizer is a computer vision project
+# Face-anonymizer on [image] [video] [webcam] is a computer vision project
 
 <!-- ABOUT THE PROJECT -->
 
