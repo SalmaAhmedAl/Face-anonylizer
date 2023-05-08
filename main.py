@@ -23,7 +23,7 @@ def process_image(img, face_detection):
 
             #img = cv2.rectangle(img, (x1, y1), (x1+w, y1+h), (0,255,0), 10)
             # blur faces       
-            img[y1:y1 + h, x1:x1 + w, :] = cv2.blur(img[y1:y1 + h, x1:x1 + w, :], (40, 40))  
+            img[y1:y1 + h, x1:x1 + w, :] = cv2.blur(img[y1:y1 + h, x1:x1 + w, :], (60, 60))  
     return img     
 
 args = argparse.ArgumentParser()
@@ -71,7 +71,7 @@ with mp_face_detection.FaceDetection(model_selection=0, min_detection_confidence
             ret, frame = cap.read()
             frame = process_image(frame, face_detection)
             cv2.imshow('frame', frame)
-            if cv2.waitKey(25) & 0xFF == ord('q'):
+            if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
     cap.release()
